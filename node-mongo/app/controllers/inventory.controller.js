@@ -20,7 +20,7 @@ exports.createInventory = (req, res) => {
 };
 
 exports.getInventory = (req,res) => {
-    Inventory.findById(req.params.id).select('__v')
+    Inventory.findById(req.params.id).select('-__v')
         .then(inventory => {
             res.status(200).json(inventory);
         }).catch(err => {
@@ -39,7 +39,7 @@ exports.getInventory = (req,res) => {
 
 
 exports.inventories = (req,res) => {
-    Inventory.find().select('__v').then(inventoryInfos => {
+    Inventory.find().select('-__v').then(inventoryInfos => {
         res.status(200).json(inventoryInfos);
     }).catch(error => {
             //log on console
